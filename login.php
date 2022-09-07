@@ -16,7 +16,7 @@ function validate($email,$password){
   $message = "";
   //!Falta validar si tiene "@" IMPORTANTE
   if(strlen($email) < 5) $message = "El email es inválido, vuelva a intentarlo";
-  else if(strlen($password) < 8) $message = "La contraseña debe contener minimo 8 caracteres";
+  else if(strlen($password) < 8) $message = "Contraseña incorrecta";
 
   //Falta validar si existe el usuario (DB)
 
