@@ -1,6 +1,7 @@
-
 <?php
 session_start(); //Importante ponerlo en el nav y sacarlo de aca
+require_once "tools/connection.php";
+
 
 if(isset($_POST['login'])){//Entra aca solo si se apreto el boton de login
 echo "asd";
