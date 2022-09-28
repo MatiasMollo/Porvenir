@@ -2,39 +2,87 @@
 require_once "tools/connection.php";
 session_start(); //Eliminar y ponerlo en el Nav, incluir el mismo en los documentos
 
+if(isset($_SESSION['user']->id)){
+  header('location:./');
+  die();
+}
+
 if(isset($_POST['register'])){
   //Declaracion de variables
-  $name = isset($_POST['name']) ? $_POST['name'] : "";
-  $email = isset($_POST['email']) ? $_POST['email'] : "";
-  $password = isset($_POST['password']) ? $_POST['password'] : "";
-  $rPassword = isset($_POST['repeatPassword']) ? $_POST['repeatPassword'] : "";
-  $dni = isset($_POST['dni']) ? $_POST['dni'] : "";
-  $numSocio = isset($_POST['numSocio']) ? $_POST['numSocio'] : "";
+  $name = !empty($_POST['name']) ? $_POST['name'] : "";
+  $email = !empty($_POST['email']) ? $_POST['email'] : "";
+  $password = !empty($_POST['password']) ? $_POST['password'] : "";
+  $rPassword = !empty($_POST['repeatPassword']) ? $_POST['repeatPassword'] : "";
+  $celular = !empty($_POST['celular']) ? $_POST['celular'] : $celular = "";
+  $dni = !empty($_POST['dni']) ? $_POST['dni'] : "";
+  $numSocio = !empty($_POST['numSocio']) ? $_POST['numSocio'] : $numSocio = null;
 
-  //Se le pasan las variables (tambien $conn porque si no no la toma)
-  validate($name,$email,$password,$rPassword,$dni,$numSocio,$conn);
+  //Reemplazamos caracteres no numericos
+  str_replace(" ","",$celular);
+  str_replace("-","",$celular);
+  str_replace(" ","",$dni);
 
-  //Falta insertarlo en la DB SOLO SI validate retorna 1. si no parar el programa
+  //Se le pasan las variables a validate (tambien $conn porque si no no la toma)
+  if(validate($name,$email,$password,$rPassword,$dni,$celular,$conn)){
+
+    $password = password_hash($password,PASSWORD_BCRYPT);
+
+    $sql = "INSERT INTO usuarios (nombre,email,password,celular,dni,numeroSocio) VALUES (:name,:email,:password,:phone,:dni,:numSocio)";
+    $consulta = $conn->prepare($sql);
+    $consulta->execute(array(
+      "name" => $name,
+      "email" => $email,
+      "password" => $password,
+      "phone" => $celular,
+      "dni" => $dni,
+      "numSocio" => $numSocio
+    ));
+
+    $consulta = $conn->prepare("SELECT id FROM usuarios WHERE dni=(?) LIMIT 1");
+    $consulta->execute([$dni]);
+    $id = $consulta->fetch()[0];
+
+    $_SESSION['user'] = (object)[
+      "id" => $id,
+      "name" => $name,
+      "email" => $email,
+      "phone" => $celular,
+      "dni" => $dni,
+      "numSocio" => $numSocio,
+      "ultimaReserva" => 0
+    ];
+    header('location:./');
+  }
+  else header('location:register.php');
 
   die(); //Deja de ejecutarse
 }
 
-function validate($name,$email,$password,$rPassword,$dni,$numSocio,$conn){
+function validate($name,$email,$password,$rPassword,$dni,$celular,$conn){
   unset($_SESSION['FLASH']);
   $message = "";
+  $retorno = true;
+
+  //Email DB
   $sql = "SELECT email FROM usuarios WHERE email=? LIMIT 1";
   $consulta = $conn->prepare($sql);
   $consulta->execute([$email]);
   $emailRegistered = $consulta->fetch();//Devuelve FALSE si no existe
 
+  $consulta = $conn->prepare("SELECT id FROM usuarios WHERE dni=(?) LIMIT 1");
+  $consulta->execute([$dni]);
+  $dniRegistered = $consulta->fetch();
+
   if(strlen($name) < 5) $message = "El nombre especificado no es válido";
-  else if(strlen($email) < 5 || !str_contains("@",$email) || !str_contains(".",$email)){
+  else if(strlen($email) < 5 || !str_contains($email,"@") || !str_contains($email,".")){
     $message = "El email especificado no es válido";
   }
   else if($emailRegistered) $message = "El email ingresado ya se encuentra registrado";
   else if(strlen($password) < 8) $message = "La contraseña debe tener al menos 8 caracteres";
   else if(strcmp($password,$rPassword) != 0) $message = "Las contraseñas no coinciden";
   else if(!is_numeric($dni)) $message = "El DNI especificado no es válido";
+  else if($dniRegistered) $message = "El DNI especificado ya se encuentra registrado";
+  else if(!is_numeric($celular)) $message = "El celular especificado no es válido";
 
   if($message != ""){
     $_SESSION['FLASH'] = [ //Flasheamos solo si hubo un error ($message!="")
@@ -42,11 +90,14 @@ function validate($name,$email,$password,$rPassword,$dni,$numSocio,$conn){
       "emailValue" => $email,
       "passwordValue" => $password,
       "dniValue" => $dni,
+      "celular" => $celular,
       "numSocioValue" => $numSocio,
       "message" => $message
     ];
+    $retorno = false;
     header('location:register.php');
   }
+  return $retorno;
 }
 ?>
 <!DOCTYPE html>
@@ -80,6 +131,11 @@ function validate($name,$email,$password,$rPassword,$dni,$numSocio,$conn){
         DNI
         <input type="tel" name="dni" id="dni" value="<?php
          if(!empty($_SESSION['FLASH'])) echo $_SESSION['FLASH']['dniValue'] ?>" required>
+      </label>
+      <label for="celular">
+        Celular
+        <input type="tel" name="celular" id="celular" value="<?php
+         if(!empty($_SESSION['FLASH'])) echo $_SESSION['FLASH']['celular'] ?>" required>
       </label>
       <label for="socio">
         N° de socio (opcional)

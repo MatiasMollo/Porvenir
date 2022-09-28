@@ -1,33 +1,57 @@
 <?php
 session_start(); //Importante ponerlo en el nav y sacarlo de aca
-require_once "tools/connection.php";
+require_once "tools/connection.php"; //Ponerlo en el nav y sacarlo de aca
 
-
-if(isset($_POST['login'])){//Entra aca solo si se apreto el boton de login
-echo "asd";
-  $email = isset($_POST['email']) ? $_POST['email'] : "";
-  $password = isset($_POST['password']) ? $_POST['password'] : "";
-  validate($email,$password);
-
-  die();//Termina el programa
-
+//En caso de sesion iniciada te devuelve al index
+if(isset($_SESSION['user']->id)){
+  header('location:./');
+  die();
 }
 
-function validate($email,$password){
+if(isset($_POST['login'])){//Entra aca solo si se apreto el boton de login
+
+  $email = isset($_POST['email']) ? $_POST['email'] : "";
+  $password = isset($_POST['password']) ? $_POST['password'] : "";
+
+  validate($email,$password,$conn);
+
+  die();//Termina el programa
+}
+
+function validate($email,$password,$conn){
   $message = "";
-  //!Falta validar si tiene "@" IMPORTANTE
-  if(strlen($email) < 5) $message = "El email es inválido, vuelva a intentarlo";
-  else if(strlen($password) < 8) $message = "Contraseña incorrecta";
 
-  //Falta validar si existe el usuario (DB)
+  $consulta = $conn->prepare("SELECT * FROM usuarios WHERE email=(?) LIMIT 1");
+  $consulta->execute([$email]);
+  $userDB = $consulta->fetch();
 
-  $_SESSION['FLASH'] = [
-    "emailValue" => $email,
-    "passwordValue" => $password,
-    "errorMessage" => $message
-  ];
-  //DEVOLVER SOLO SI HAY ERRORES (si $msj != "")
-  return header('location:login.php'); //Recarga este documento con el metodo GET
+  //!Falta validar email de la DB
+  if(strlen($email) < 5 || !str_contains($email,'@') || !str_contains($email,'.')){
+    $message = "El email es inválido, vuelva a intentarlo";
+  }
+  //Verificamos que la contraseña coincida con la del registro
+  else if(!password_verify($password,$userDB['password'])) $message = "Contraseña incorrecta";
+
+  if($message == ""){
+    $_SESSION['user'] = (object)[
+      "id" => $userDB['id'],
+      "name" => $userDB['nombre'],
+      "email" => $userDB['email'],
+      "phone" => $userDB['celular'],
+      "dni" => $userDB['dni'],
+      "numSocio" => $userDB['numSocio'],
+      "ultimaReserva" => $userDB['ultimaReserva']
+    ];
+    header('location:./');
+  }
+  else{
+    $_SESSION['FLASH'] = [
+      "emailValue" => $email,
+      "passwordValue" => $password,
+      "errorMessage" => $message
+    ];
+    header('location:./login.php'); //Recarga el documento con metodo Get
+  }
 }
 
  ?>

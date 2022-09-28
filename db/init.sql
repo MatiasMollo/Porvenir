@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `dni` INT NOT NULL,
   `numeroSocio` INT,
   `habilitado` BOOLEAN,
-  `ultimaReserva` TIMESTAMP
+  `ultimaReserva` TIMESTAMP DEFAULT NULL
 ) ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `fotos_dni` (
