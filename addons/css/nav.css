@@ -1,0 +1,86 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Proza Libre';
+}
+
+:root{
+    --blanco: #FFFFFF;
+    --grisBlanco: #CFCFCF;
+    --gris: #8A8A8A;
+    --grisNegro: #595959;
+    --negro: #000000;
+}
+
+body{
+    background-color: var(--grisBlanco);
+}
+
+
+.nav__icons{
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    display: flex;
+    width: 98.9vw;
+    height: 8vh;
+}
+
+
+.nav{
+    margin-top: 9vh;
+    justify-content: center;
+    position: sticky;
+    z-index: 10;
+}
+
+.nav__menuIcon, .nav__usserIcon{
+    max-height: 7.5vh;
+}
+
+.nav__menuIcon{
+    margin-left: 3vw;
+}
+
+.nav__usserIcon{
+    margin-right: 2vw;
+}
+
+.nav__list{
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    width: 80vw;
+    z-index: 1;
+    background-color: var(--blanco);
+    margin: 0 auto;
+    max-height: 7.5vh;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    padding-inline-start: 5vw;
+    padding-inline-end: 5vw;
+
+    border-radius: 25px;
+}
+
+.nav__btn{
+    text-decoration: none;
+}
+
+.nav__btnBox{
+    background-color: var(--grisNegro);
+    color: var(--blanco);
+    width: 12.5vw;
+    height: 4vh;
+    padding: 0.5vh 0;
+    border-radius: 25px;
+    text-align: center;
+}
+
+.nav__logoPorvenir{
+    max-height: 17.5vh;
+    position: relative;
+    bottom: 2vh;
+}
