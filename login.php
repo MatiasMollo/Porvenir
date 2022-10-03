@@ -1,7 +1,5 @@
 <?php
-session_start(); //Importante ponerlo en el nav y sacarlo de aca
-require_once "tools/connection.php"; //Ponerlo en el nav y sacarlo de aca
-
+include "addons/nav.php";
 //En caso de sesion iniciada te devuelve al index
 if(isset($_SESSION['user']->id)){
   header('location:./');
@@ -59,7 +57,9 @@ function validate($email,$password,$conn){
 <html lang="es" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Login - Porvenir</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <title>Login - El Porvenir</title>
   </head>
   <body>
     <form action="login.php" method="post">
@@ -83,7 +83,7 @@ function validate($email,$password,$conn){
           unset($_SESSION['FLASH']); //elimino datos flash
         }
         ?></p>
-      <button type="submit" name="login">Ingresar</button>
+      <button type="submit" name="login" class="btn btn-primary">Ingresar</button>
     </form>
   </body>
 </html>

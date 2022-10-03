@@ -1,6 +1,6 @@
 <?php
 require_once "tools/connection.php";
-session_start(); //Eliminar y ponerlo en el Nav, incluir el mismo en los documentos
+include "addons/nav.php";
 
 if(isset($_SESSION['user']->id)){
   header('location:./');
@@ -104,7 +104,9 @@ function validate($name,$email,$password,$rPassword,$dni,$celular,$conn){
 <html lang="es" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Registrarse - Porvenir</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <title>Registrarse - El Porvenir</title>
   </head>
   <body>
     <form style="display:flex;flex-direction:column" action="register.php" method="post">
@@ -150,7 +152,7 @@ function validate($name,$email,$password,$rPassword,$dni,$celular,$conn){
           unset($_SESSION['FLASH']); //Eliminamos datos de sesion
         }
        ?></h4>
-      <button type="submit" name="register">Registrarme</button>
+      <button type="submit" name="register" class="btn btn-primary">Registrarme</button>
     </form>
   </body>
 </html>
