@@ -1,0 +1,18 @@
+:root{
+    --blanco: #FFFFFF;
+    --grisBlanco: #CFCFCF;
+    --gris: #8A8A8A;
+    --grisNegro: #595959;
+    --negro: #000000;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Proza Libre';
+}
+
+body{
+    background-color: var(--grisBlanco);
+}
