@@ -7,6 +7,10 @@ if(isset($_SESSION['user']->id)){
   die();
 }
 
+///
+/// FALTA FECHA DE NACIMIENTO Y SU VERIFICACION! DESPUES PASARLO A LA DB
+///
+
 if(isset($_POST['register'])){
   //Declaracion de variables
   $name = !empty($_POST['name']) ? $_POST['name'] : "";
