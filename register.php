@@ -7,19 +7,16 @@ if(isset($_SESSION['user']->id)){
   die();
 }
 
-///
-/// FALTA FECHA DE NACIMIENTO Y SU VERIFICACION! DESPUES PASARLO A LA DB
-///
-
 if(isset($_POST['register'])){
   //Declaracion de variables
   $name = !empty($_POST['name']) ? $_POST['name'] : "";
   $email = !empty($_POST['email']) ? $_POST['email'] : "";
   $password = !empty($_POST['password']) ? $_POST['password'] : "";
   $rPassword = !empty($_POST['repeatPassword']) ? $_POST['repeatPassword'] : "";
-  $celular = !empty($_POST['celular']) ? $_POST['celular'] : $celular = "";
+  $celular = !empty($_POST['celular']) ? $_POST['celular'] : "";
+  $fechaNacimiento = !empty($_POST['fechaNacimiento']) ? $_POST['fechaNacimiento'] : "";
   $dni = !empty($_POST['dni']) ? $_POST['dni'] : "";
-  $numSocio = !empty($_POST['numSocio']) ? $_POST['numSocio'] : $numSocio = null;
+  $numSocio = !empty($_POST['numSocio']) ? $_POST['numSocio'] : null;
 
   //Reemplazamos caracteres no numericos
   str_replace(" ","",$celular);
@@ -27,11 +24,11 @@ if(isset($_POST['register'])){
   str_replace(" ","",$dni);
 
   //Se le pasan las variables a validate (tambien $conn porque si no no la toma)
-  if(validate($name,$email,$password,$rPassword,$dni,$celular,$conn)){
+  if(validate($name,$email,$password,$rPassword, $fechaNacimiento,$dni,$celular,$conn)){
 
     $password = password_hash($password,PASSWORD_BCRYPT);
 
-    $sql = "INSERT INTO usuarios (nombre,email,password,celular,dni,numeroSocio) VALUES (:name,:email,:password,:phone,:dni,:numSocio)";
+    $sql = "INSERT INTO usuarios (nombre,email,password,celular,dni,fechaNacimiento,numeroSocio) VALUES (:name,:email,:password,:phone,:dni,:fechaNacimiento,:numSocio)";
     $consulta = $conn->prepare($sql);
     $consulta->execute(array(
       "name" => $name,
@@ -39,6 +36,7 @@ if(isset($_POST['register'])){
       "password" => $password,
       "phone" => $celular,
       "dni" => $dni,
+      "fechaNacimiento" => date($fechaNacimiento),
       "numSocio" => $numSocio
     ));
 
@@ -52,6 +50,7 @@ if(isset($_POST['register'])){
       "email" => $email,
       "phone" => $celular,
       "dni" => $dni,
+      "fechaNacimiento" => $fechaNacimiento,
       "numSocio" => $numSocio,
       "ultimaReserva" => 0
     ];
@@ -62,7 +61,7 @@ if(isset($_POST['register'])){
   die(); //Deja de ejecutarse
 }
 
-function validate($name,$email,$password,$rPassword,$dni,$celular,$conn){
+function validate($name,$email,$password,$rPassword,$fechaNacimiento,$dni,$celular,$conn){
   unset($_SESSION['FLASH']);
   $message = "";
   $retorno = true;
@@ -77,6 +76,7 @@ function validate($name,$email,$password,$rPassword,$dni,$celular,$conn){
   $consulta->execute([$dni]);
   $dniRegistered = $consulta->fetch();
 
+
   if(strlen($name) < 5) $message = "El nombre especificado no es válido";
   else if(strlen($email) < 5 || !str_contains($email,"@") || !str_contains($email,".")){
     $message = "El email especificado no es válido";
@@ -84,6 +84,8 @@ function validate($name,$email,$password,$rPassword,$dni,$celular,$conn){
   else if($emailRegistered) $message = "El email ingresado ya se encuentra registrado";
   else if(strlen($password) < 8) $message = "La contraseña debe tener al menos 8 caracteres";
   else if(strcmp($password,$rPassword) != 0) $message = "Las contraseñas no coinciden";
+  else if(!(strlen($fechaNacimiento) > 0)) $message = "La fecha de nacimiento es requerida";
+  //Preguntar al porve si se necesita un minimo de edad
   else if(!is_numeric($dni)) $message = "El DNI especificado no es válido";
   else if($dniRegistered) $message = "El DNI especificado ya se encuentra registrado";
   else if(!is_numeric($celular)) $message = "El celular especificado no es válido";
@@ -94,6 +96,7 @@ function validate($name,$email,$password,$rPassword,$dni,$celular,$conn){
       "emailValue" => $email,
       "passwordValue" => $password,
       "dniValue" => $dni,
+      "fechaNacimiento" => $fechaNacimiento,
       "celular" => $celular,
       "numSocioValue" => $numSocio,
       "message" => $message
@@ -132,6 +135,11 @@ function validate($name,$email,$password,$rPassword,$dni,$celular,$conn){
       <label for="repeatPassword">
         Confirmar contraseña
         <input type="password" name="repeatPassword" id="repeatPassword" value="" required>
+      </label>
+      <label for="fechaNacimiento">
+        Fecha de nacimiento
+        <input type="date" name="fechaNacimiento" id="fechaNacimiento" value="<?php
+          if(!empty($_SESSION['FLASH'])) echo $_SESSION['FLASH']['fechaNacimiento'] ?>" required>
       </label>
       <label for="dni">
         DNI

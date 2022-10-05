@@ -37,6 +37,7 @@ function validate($email,$password,$conn){
       "email" => $userDB['email'],
       "phone" => $userDB['celular'],
       "dni" => $userDB['dni'],
+      "fechaNacimiento" => $userDB['fechaNacimiento'],
       "numSocio" => $userDB['numSocio'],
       "ultimaReserva" => $userDB['ultimaReserva']
     ];
