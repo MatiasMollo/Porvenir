@@ -35,11 +35,11 @@
 
 @media screen and (min-width:1024px){
     .sidebar{
-        top:0vh;
+        top:9vh;
         width: 10vw;
     }
     .sidebar--login .sidebar__box{
-        border-radius: 60% 0px 15px 15px;
+        border-radius: 60% 15px 15px 15px;
         width: max-content;
     }
     .sidebar__box{
