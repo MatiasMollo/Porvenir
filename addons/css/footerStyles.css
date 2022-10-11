@@ -1,0 +1,40 @@
+@media screen and (min-width: 1024px){
+    .footer{
+        border-top: 3px solid var(--negro);
+        background: var(--blanco);
+        position: relative;
+        height: 11vh;
+        width: 100%;
+    }
+    .info{
+        justify-content: space-between;        
+        position: relative;
+        margin: auto;
+        display:flex;
+        width: 95%;
+        top: 20%;
+
+    }
+    .info__boton{
+        text-decoration: none;
+        display: inline-flex;
+        color: var(--negro);
+        align-items: center;
+    }
+    .info__boton:hover{
+        transform: scale(1.1);
+        text-decoration:underline;
+    }
+    .info__btnIcon{
+        margin-right: 3%;
+        height: 3.5vh;
+    }
+    .info__derecha{
+        text-align: right;
+    }
+}
+@media screen and (max-width: 1023px){
+    .footer{
+        display: none;
+    }
+}

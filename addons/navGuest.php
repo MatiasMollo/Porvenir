@@ -1,8 +1,8 @@
 <div class="nav">
     <nav class="nav__bar">
         <div class="nav__icons">
-            <img src="addons/img/iconMenu.svg" alt="Icono Menú" class="nav__menuIcon">
-            <img src="addons/img/iconUser.svg" alt="Icono Usuario" class="nav__userIcon">
+            <img src="addons/images/navImages/iconMenu.svg" alt="Icono Menú" class="nav__menuIcon">
+            <img src="addons/images/navImages/iconUser.svg" alt="Icono Usuario" class="nav__userIcon">
         </div>
 
         <ul class="nav__list">
@@ -19,7 +19,7 @@
             </a>
 
             
-            <img src="addons/img/logoPorvenir.png" alt="Porvenir Logo" class="nav__logoPorvenir">
+            <img src="addons/images/navImages/logoPorvenir.png" alt="Porvenir Logo" class="nav__logoPorvenir">
 
             <a href="" class="nav__btn">
                 <div class="nav__btnBox">
