@@ -12,5 +12,6 @@
     <main>
         
     </main>
+    <?php require_once("addons/footer.php")?>
 </body>
 </html>
