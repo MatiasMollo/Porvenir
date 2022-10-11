@@ -35,7 +35,7 @@
 
 
 
-.nav__menuIcon, .nav__userIcon{
+.nav__icon{
     background-color: var(--blanco);
     border-radius: 100%;
     padding: 0.6vh;
@@ -43,12 +43,15 @@
     
 }
 
-.nav__menuIcon{
+.nav__icon--left{
     margin-left: 3vw;
 }
 
-.nav__userIcon{
+.nav__icon--right{
     margin-right: 2vw;
+}
+.closeSidebarLogin, .closeSidebarSocial{
+    display: none;
 }
 @media screen and (min-width: 1024px) {
     .nav:nth-of-type(1){
