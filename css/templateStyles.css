@@ -15,4 +15,9 @@
 
 body{
     background-color: var(--grisBlanco);
+    
+}
+
+main{
+    height: 80vh;
 }
