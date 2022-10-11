@@ -1,10 +1,12 @@
 <div class="nav">
     <nav class="nav__bar">
         <div class="nav__icons">
+
             <img class="nav__icon nav__icon--left openSidebarSocial" src="addons/images/navImages/iconMenu.svg" alt="Boton Menu">
             <img class="nav__icon nav__icon--left closeSidebarSocial" src="addons/images/navImages/iconCloseSidebar.svg" alt="Boton Menu">
             <img class="nav__icon  nav__icon--right openSidebarLogin" src="addons/images/navImages/iconUser.svg" alt="Boton Usuario">
             <img class="nav__icon nav__icon--right closeSidebarLogin" src="addons/images/navImages/iconCloseSidebar.svg" alt="Boton Usuario">
+
         </div>
 
         <ul class="nav__list">

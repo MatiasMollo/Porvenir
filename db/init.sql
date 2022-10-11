@@ -9,9 +9,10 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `password` VARCHAR(255) NOT NULL,
   `celular` VARCHAR(255) NOT NULL,
   `dni` INT NOT NULL,
+  `fechaNacimiento` DATE NOT NULL,
   `numeroSocio` INT,
   `habilitado` BOOLEAN,
-  `ultimaReserva` TIMESTAMP DEFAULT NULL
+  `ultimaReserva` TIMESTAMP DEFAULT 0
 ) ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `fotos_dni` (
