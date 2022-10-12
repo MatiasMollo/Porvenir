@@ -1,0 +1,63 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+.logo__link{
+    height: 15vh;
+}
+.background__form{
+    background-color: var(--blanco);
+    border-radius: 10px;
+}
+form, .form__line{
+    display: flex;
+    flex-direction: column; 
+    text-align: left;
+}
+.form__box{
+    border: 2px solid var(--negro);
+    border-radius: 7px;
+    padding: 1vh 0.2vw;
+}
+.btn__login{
+    background-color: var(--grisNegro);
+    border-radius: 5px;
+    color: var(--blanco);
+    font-size: 1.1em;
+    font-weight: 600;
+}
+.form__info{
+    border: 2px solid var(--blanco);
+    border-radius: 5px;
+    padding: 1vh 0vw;
+    margin: 2vh 0vw;
+    
+}
+.link__register{
+    text-decoration: none;
+    color: var(--gris);
+}
+@media screen and (min-width: 1024px){
+    .container{
+        margin: 10vh auto;
+        width: 30%;
+       
+    }
+    .background__form{
+        padding: 4vh 2vw;
+    }
+    .form__line{
+        margin: 2vh 0vw;
+    }
+    .btn__login{
+        padding: 1.2vh 0vw;
+        margin-top: 2vh;
+    }
+    .btn__login:hover{
+        background-color: var(--blanco);
+        color: var(--negro);
+        cursor: pointer;
+    }
+}
