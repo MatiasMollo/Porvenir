@@ -1,5 +1,4 @@
 <?php
-include "addons/nav.php";
 //En caso de sesion iniciada te devuelve al index
 if(isset($_SESSION['user']->id)){
   header('location:./');
@@ -58,33 +57,43 @@ function validate($email,$password,$conn){
 <html lang="es" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="css/templateStyles.css">
+    <link rel="stylesheet" href="css/navStyles.css">
     <title>Login - El Porvenir</title>
   </head>
   <body>
-    <form action="login.php" method="post">
-      <div>
-        <label for="email">Email</label>
-        <input type="text" name="email" id="email" required
-         value="<?php
-          if(!empty($_SESSION['FLASH'])) echo $_SESSION['FLASH']['emailValue'];
-          ?>">
-      </div>
-      <div>
-        <label for="password">Contraseña</label>
-        <input type="password" name="password" id="password" required
-         value="<?php
-          if(isset($_SESSION['FLASH'])) echo $_SESSION['FLASH']['passwordValue'];
-          ?>">
-      </div>
-      <p><?php
-        if(isset($_SESSION['FLASH'])){
-          echo $_SESSION['FLASH']['errorMessage'];
-          unset($_SESSION['FLASH']); //elimino datos flash
-        }
-        ?></p>
-      <button type="submit" name="login" class="btn btn-primary">Ingresar</button>
+    <div class="container">
+      <a href="./"> <img class="logo__link" src="addons/images/navimages/logoPorvenir.png" alt="logo del el porvenir"></a>
+        <div class="background__form">
+          <h2>Iniciar Sesión</h2>
+          <form action="login.php" method="post">
+            <div class="form__line">
+              <label class="form__text" for="email">Email</label>
+              <input class="form__box"type="text" name="email" id="email" required
+                value="<?php
+                  if(!empty($_SESSION['FLASH'])) echo $_SESSION['FLASH']['emailValue'];
+              ?>">
+            </div>
+            <div class="form__line">
+              <label class="form__text" for="password">Contraseña</label>
+              <input class="form__box" type="password" name="password" id="password" required
+                value="<?php
+                if(isset($_SESSION['FLASH'])) echo $_SESSION['FLASH']['passwordValue'];
+              ?>">
+            </div>
+            <p><?php
+            if(isset($_SESSION['FLASH'])){
+            echo $_SESSION['FLASH']['errorMessage'];
+            unset($_SESSION['FLASH']); //elimino datos flash
+            }
+            ?></p>
+            <button type="submit" name="login" class="btn__login">Ingresar</button>
     </form>
+        </div>
+        <div class="form__info">
+            <p class="info">Si usted no tiene cuenta, <a class="link__register" href="register.php">Registrese</a></p>
+        </div>
+    </div>
   </body>
 </html>
