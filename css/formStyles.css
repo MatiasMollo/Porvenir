@@ -3,6 +3,7 @@
     flex-direction: column;
     justify-content: center;
     text-align: center;
+    margin: 10vh auto;
 }
 .logo__link{
     height: 15vh;
@@ -16,12 +17,19 @@ form, .form__line{
     flex-direction: column; 
     text-align: left;
 }
+
+.form__text__register{
+    display: flex;
+    flex-direction: column;
+}
+
 .form__box{
     border: 2px solid var(--negro);
     border-radius: 7px;
     padding: 1vh 0.2vw;
 }
-.btn__login{
+
+.btn__form{
     background-color: var(--grisNegro);
     border-radius: 5px;
     color: var(--blanco);
@@ -39,17 +47,27 @@ form, .form__line{
     text-decoration: none;
     color: var(--gris);
 }
+
 @media screen and (min-width: 1024px){
-    .container{
-        margin: 10vh auto;
-        width: 30%;
-       
+    .container{  
+        width: 30%;     
+    }
+    .container__register{
+        width: 40%; 
     }
     .background__form{
         padding: 4vh 2vw;
     }
+    .form--row{
+        flex-direction: row;
+        display: flex;
+        justify-content: space-around;
+    }
     .form__line{
-        margin: 2vh 0vw;
+        margin: 2vh 0vw;  
+    }
+    .form__line__register{
+        width: 110%;
     }
     .btn__login{
         padding: 1.2vh 0vw;

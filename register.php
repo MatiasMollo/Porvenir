@@ -1,6 +1,5 @@
 <?php
 require_once "tools/connection.php";
-include "addons/nav.php";
 
 if(isset($_SESSION['user']->id)){
   header('location:./');
@@ -111,60 +110,92 @@ function validate($name,$email,$password,$rPassword,$fechaNacimiento,$dni,$celul
 <html lang="es" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="css/templateStyles.css">
+    <link rel="stylesheet" href="css/formStyles.css">
     <title>Registrarse - El Porvenir</title>
   </head>
   <body>
-    <form style="display:flex;flex-direction:column" action="register.php" method="post">
-      <label for="name">
-        Nombre completo
-        <input type="text" name="name" id="name" value="<?php
-         if(!empty($_SESSION['FLASH'])) echo $_SESSION['FLASH']['nameValue'] ?>" required>
-      </label>
-      <label for="email">
-        Email
-        <input type="email" name="email" id="email" value="<?php
-         if(!empty($_SESSION['FLASH'])) echo $_SESSION['FLASH']['emailValue'] ?>" required>
-      </label>
-      <label for="password">
-        Contraseña
-        <input type="password" name="password" id="password" value="<?php
-         if(!empty($_SESSION['FLASH'])) echo $_SESSION['FLASH']['passwordValue'] ?>" required>
-      </label>
-      <label for="repeatPassword">
-        Confirmar contraseña
-        <input type="password" name="repeatPassword" id="repeatPassword" value="" required>
-      </label>
-      <label for="fechaNacimiento">
-        Fecha de nacimiento
-        <input type="date" name="fechaNacimiento" id="fechaNacimiento" value="<?php
-          if(!empty($_SESSION['FLASH'])) echo $_SESSION['FLASH']['fechaNacimiento'] ?>" required>
-      </label>
-      <label for="dni">
-        DNI
-        <input type="tel" name="dni" id="dni" value="<?php
-         if(!empty($_SESSION['FLASH'])) echo $_SESSION['FLASH']['dniValue'] ?>" required>
-      </label>
-      <label for="celular">
-        Celular
-        <input type="tel" name="celular" id="celular" value="<?php
-         if(!empty($_SESSION['FLASH'])) echo $_SESSION['FLASH']['celular'] ?>" required>
-      </label>
-      <label for="socio">
-        N° de socio (opcional)
-        <input type="tel" name="numSocio" id="socio" value="<?php
-         if(!empty($_SESSION['FLASH'])){
-          echo $_SESSION['FLASH']['numSocioValue'];
-        }  ?>">
-      </label>
-      <h4 style="color:red"><?php
-        if(isset($_SESSION['FLASH'])){
-          echo $_SESSION['FLASH']['message'];
-          unset($_SESSION['FLASH']); //Eliminamos datos de sesion
-        }
-       ?></h4>
-      <button type="submit" name="register" class="btn btn-primary">Registrarme</button>
-    </form>
+      <div class="container container__register">
+          <a href="./"> <img class="logo__link " src="addons/images/navImages/logoPorvenir.png" alt=""></a>
+          <div class="background__form"> 
+            <h2>Registrarse</h2>
+          <form class="form__register" action="register.php" method="post">
+            <div class="form--row">
+              <div>
+                <div class="form__line form__line__register">
+                  <label class="form__text form__text__register" for="name">
+                    Nombre completo
+                    <input class="form__box form__box__register"  type="text" name="name" id="name" value="<?php
+                    if(!empty($_SESSION['FLASH'])) echo $_SESSION['FLASH']['nameValue'] ?>" required>
+                  </label>
+                </div>
+                <div class="form__line form__line__register">
+                  <label class="form__text form__text__register" for="email">
+                    Email
+                    <input class="form__box form__box__register" type="email" name="email" id="email" value="<?php
+                    if(!empty($_SESSION['FLASH'])) echo $_SESSION['FLASH']['emailValue'] ?>" required>
+                  </label>
+                </div>
+                <div class="form__line form__line__register">
+                  <label class="form__text form__text__register" for="password">
+                    Contraseña
+                    <input class="form__box form__box__register" type="password" name="password" id="password" value="<?php
+                    if(!empty($_SESSION['FLASH'])) echo $_SESSION['FLASH']['passwordValue'] ?>" required>
+                  </label>
+                </div>
+                <div class="form__line form__line__register">
+                  <label class="form__text form__text__register" for="repeatPassword">
+                    Confirmar contraseña
+                    <input class="form__box form__box__register" type="password" name="repeatPassword" id="repeatPassword" value="" required>
+                  </label>
+                </div>
+              </div>
+              <div>
+                <div  class="form__line form__line__register">
+                  <label class="form__text form__text__register" for="fechaNacimiento">
+                    Fecha de nacimiento
+                    <input class="form__box form__box__register" type="date" name="fechaNacimiento" id="fechaNacimiento" value="<?php
+                      if(!empty($_SESSION['FLASH'])) echo $_SESSION['FLASH']['fechaNacimiento'] ?>" required>
+                  </label>
+                </div>
+                <div class="form__line form__line__register">
+                  <label class="form__text form__text__register" for="dni">
+                      DNI
+                      <input class="form__box form__box__register" type="tel" name="dni" id="dni" value="<?php
+                      if(!empty($_SESSION['FLASH'])) echo $_SESSION['FLASH']['dniValue'] ?>" required>
+                  </label>
+                </div>
+                <div class="form__line form__line__register">
+                    <label class="form__text form__text__register" for="celular">
+                      Celular
+                      <input class="form__box form__box__register" type="tel" name="celular" id="celular" value="<?php
+                      if(!empty($_SESSION['FLASH'])) echo $_SESSION['FLASH']['celular'] ?>" required>
+                    </label>
+                </div>
+                <div class="form__line form__line__register">
+                    <label class="form__text form__text__register"  for="socio">
+                      N° de socio (opcional)
+                      <input class="form__box form__box__register"  type="tel" name="numSocio" id="socio" value="<?php
+                      if(!empty($_SESSION['FLASH'])){
+                        echo $_SESSION['FLASH']['numSocioValue'];
+                      } ?>">
+                    </label>
+                </div>
+              </div>
+            </div>
+              <h4 style="color:red"><?php
+                if(isset($_SESSION['FLASH'])){
+                  echo $_SESSION['FLASH']['message'];
+                  unset($_SESSION['FLASH']); //Eliminamos datos de sesion
+                }
+              ?></h4>
+              <button type="submit" name="register" class="btn__form">Registrarme</button>
+              </form>
+          </div>
+          <div class="form__info">
+            <p class="info">Si usted tiene una cuenta, <a class="link__register" href="login.php">inicie sesión</a></p>
+          </div>
+      </div>
   </body>
 </html>

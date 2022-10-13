@@ -59,7 +59,7 @@ function validate($email,$password,$conn){
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
     <link rel="stylesheet" href="css/templateStyles.css">
-    <link rel="stylesheet" href="css/navStyles.css">
+    <link rel="stylesheet" href="css/formStyles.css">
     <title>Login - El Porvenir</title>
   </head>
   <body>
@@ -88,8 +88,8 @@ function validate($email,$password,$conn){
             unset($_SESSION['FLASH']); //elimino datos flash
             }
             ?></p>
-            <button type="submit" name="login" class="btn__login">Ingresar</button>
-    </form>
+            <button type="submit" name="login" class="btn__form">Ingresar</button>
+          </form>
         </div>
         <div class="form__info">
             <p class="info">Si usted no tiene cuenta, <a class="link__register" href="register.php">Registrese</a></p>
