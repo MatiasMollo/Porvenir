@@ -31,10 +31,12 @@ form, .form__line{
 
 .btn__form{
     background-color: var(--grisNegro);
-    border-radius: 5px;
     color: var(--blanco);
+    border-radius: 5px;
     font-size: 1.1em;
     font-weight: 600;
+    margin: auto;
+    width: 70%;
 }
 .form__info{
     border: 2px solid var(--blanco);
@@ -47,6 +49,29 @@ form, .form__line{
     text-decoration: none;
     color: var(--gris);
 }
+@media screen and (min-width: 0px){
+    .container{  
+        margin: 15vh auto;
+        width: 90%;     
+    }
+    
+    .background__form{
+        padding: 4vh 2vw;
+    }
+    .form__line{
+        margin: 2vh 0vw;  
+    }
+    
+    .btn__login{
+        padding: 1.2vh 0vw;
+        margin-top: 2vh;
+    }
+    .btn__login:hover{
+        background-color: var(--blanco);
+        color: var(--negro);
+        cursor: pointer;
+    }
+}
 
 @media screen and (min-width: 1024px){
     .container{  
@@ -55,23 +80,13 @@ form, .form__line{
     .container__register{
         width: 40%; 
     }
-    .background__form{
-        padding: 4vh 2vw;
+    .form__line__register{
+        width: 110%;
     }
     .form--row{
         flex-direction: row;
         display: flex;
         justify-content: space-around;
-    }
-    .form__line{
-        margin: 2vh 0vw;  
-    }
-    .form__line__register{
-        width: 110%;
-    }
-    .btn__login{
-        padding: 1.2vh 0vw;
-        margin-top: 2vh;
     }
     .btn__login:hover{
         background-color: var(--blanco);
