@@ -1,0 +1,51 @@
+.sidebar{
+    justify-content: center;
+    position: absolute;
+    display: none;
+}
+.sidebar--login{
+    right:0vw;
+}
+.sidebar__box{
+    justify-content: center;
+    background-color: var(--blanco);
+    border-radius: 15px;
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+}
+.sidebar__item{
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    margin: 0.5vh;
+    width: 85%;
+    
+}
+.sidebar__icon{
+    transition: 400ms all;
+}
+.sidebar__text{
+    background-color: var(--grisNegro);
+    border-radius: 15px;
+    color: var(--blanco);
+    padding: 10px;
+    
+}
+
+@media screen and (min-width:1024px){
+    .sidebar{
+        top:9vh;
+        width: 10vw;
+    }
+    .sidebar--login .sidebar__box{
+        border-radius: 60% 15px 15px 15px;
+        width: max-content;
+    }
+    .sidebar__box{
+        padding-bottom: 0.5vh;
+        padding-top: 8.5vh;
+        width: 5vw;
+    }
+    .sidebar__icon:hover{transform: scale(1.1);}
+}

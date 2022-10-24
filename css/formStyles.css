@@ -1,0 +1,96 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin: 10vh auto;
+}
+.logo__link{
+    height: 15vh;
+}
+.background__form{
+    background-color: var(--blanco);
+    border-radius: 10px;
+}
+form, .form__line{
+    display: flex;
+    flex-direction: column; 
+    text-align: left;
+}
+
+.form__text__register{
+    display: flex;
+    flex-direction: column;
+}
+
+.form__box{
+    border: 2px solid var(--negro);
+    border-radius: 7px;
+    padding: 1vh 0.2vw;
+}
+
+.btn__form{
+    background-color: var(--grisNegro);
+    color: var(--blanco);
+    border-radius: 5px;
+    font-size: 1.1em;
+    font-weight: 600;
+    margin: auto;
+    width: 70%;
+}
+.form__info{
+    border: 2px solid var(--blanco);
+    border-radius: 5px;
+    padding: 1vh 0vw;
+    margin: 2vh 0vw;
+    
+}
+.link__register{
+    text-decoration: none;
+    color: var(--gris);
+}
+@media screen and (min-width: 0px){
+    .container{  
+        margin: 15vh auto;
+        width: 90%;     
+    }
+    
+    .background__form{
+        padding: 4vh 2vw;
+    }
+    .form__line{
+        margin: 2vh 0vw;  
+    }
+    
+    .btn__login{
+        padding: 1.2vh 0vw;
+        margin-top: 2vh;
+    }
+    .btn__login:hover{
+        background-color: var(--blanco);
+        color: var(--negro);
+        cursor: pointer;
+    }
+}
+
+@media screen and (min-width: 1024px){
+    .container{  
+        width: 30%;     
+    }
+    .container__register{
+        width: 40%; 
+    }
+    .form__line__register{
+        width: 110%;
+    }
+    .form--row{
+        flex-direction: row;
+        display: flex;
+        justify-content: space-around;
+    }
+    .btn__login:hover{
+        background-color: var(--blanco);
+        color: var(--negro);
+        cursor: pointer;
+    }
+}

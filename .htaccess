@@ -1,0 +1,13 @@
+#~~~~~# Protección en directorios #~~~~~#
+
+Options All -Indexes
+
+#~~~~~# Mensajes de errores #~~~~~#
+
+ErrorDocument 403 /public_html/tools/err/err403.htm
+ErrorDocument 404 /public_html/tools/err/err404.htm
+
+#~~~~~# Opciones de PHP #~~~~~#
+
+php_flag log_errors on
+php_flag display_errors on
