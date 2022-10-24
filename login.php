@@ -1,4 +1,6 @@
 <?php
+require_once "tools/connection.php";
+
 //En caso de sesion iniciada te devuelve al index
 if(isset($_SESSION['user']->id)){
   header('location:./');
