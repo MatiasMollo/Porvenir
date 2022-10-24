@@ -1,5 +1,6 @@
 <?php
 require_once "tools/connection.php";
+session_start();
 
 if(isset($_SESSION['user']->id)){
   header('location:./');
@@ -184,7 +185,7 @@ function validate($name,$email,$password,$rPassword,$fechaNacimiento,$dni,$celul
                 </div>
               </div>
             </div>
-              <h4 style="color:red"><?php
+              <h4 class="errorMessage"><?php
                 if(isset($_SESSION['FLASH'])){
                   echo $_SESSION['FLASH']['message'];
                   unset($_SESSION['FLASH']); //Eliminamos datos de sesion

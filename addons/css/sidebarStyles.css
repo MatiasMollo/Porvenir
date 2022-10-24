@@ -29,8 +29,13 @@
     background-color: var(--grisNegro);
     border-radius: 15px;
     color: var(--blanco);
+    padding: 10px; 
+}
+
+.sidebar__text_simple{
+    color: var(--grisNegro);
     padding: 10px;
-    
+    font-size:120%;
 }
 
 @media screen and (min-width:1024px){

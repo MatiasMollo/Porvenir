@@ -1,5 +1,6 @@
 <?php
 require_once "tools/connection.php";
+session_start();
 
 //En caso de sesion iniciada te devuelve al index
 if(isset($_SESSION['user']->id)){
@@ -24,7 +25,7 @@ function validate($email,$password,$conn){
   $consulta->execute([$email]);
   $userDB = $consulta->fetch();
 
-  //!Falta validar email de la DB
+
   if(strlen($email) < 5 || !str_contains($email,'@') || !str_contains($email,'.')){
     $message = "El email es inválido, vuelva a intentarlo";
   }

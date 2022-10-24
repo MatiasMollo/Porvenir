@@ -1,5 +1,6 @@
 <?php
-if(isset($_SESSION['user'])) var_dump($_SESSION['user']);
+//if(isset($_SESSION['user'])) var_dump($_SESSION['user']); //! Quien puso esta linea amigo?????
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
@@ -13,11 +14,18 @@ if(isset($_SESSION['user'])) var_dump($_SESSION['user']);
     <?php include("addons/navGuest.php");?>
     <main>
         <div>
-          
+          Estás en el index
+          <br>
+          <?php
+            if(isset($_SESSION['user'])) echo $_SESSION['user']->name;
+            else echo "No hay sesion";
+          ?>
         </div>
     </main>
     <?php 
-      require_once("addons/sidebarLoginGuest.php");
+      if(isset($_SESSION['user'])) require_once("addons/sidebarLogged.php");
+      else require_once("addons/sidebarLoginGuest.php");
+      
       require_once("addons/footer.php");
     ?>
 

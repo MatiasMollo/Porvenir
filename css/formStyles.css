@@ -17,6 +17,11 @@ form, .form__line{
     flex-direction: column; 
     text-align: left;
 }
+.errorMessage{
+    color:red;
+    text-align: center;
+    margin-bottom:0.5em;
+}
 
 .form__text__register{
     display: flex;
