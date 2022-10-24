@@ -17,8 +17,9 @@ if(isset($_SESSION['user'])) var_dump($_SESSION['user']);
         </div>
     </main>
     <?php 
-      require_once("addons/sidebarLoginGuest.php");
-      require_once("addons/footer.php");
+        include("addons/navGuest.php"); 
+        require_once("addons/sidebarLoginGuest.php");
+        require_once("addons/footer.php");
     ?>
 
   </body>
