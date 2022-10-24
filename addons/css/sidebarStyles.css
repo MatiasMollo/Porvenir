@@ -1,15 +1,16 @@
 .sidebar{
     justify-content: center;
-    position: absolute;
+    position: fixed;
     display: none;
 }
 .sidebar--login{
-    right:0vw;
+    
+    right: 0vw;
 }
 .sidebar__box{
     justify-content: center;
     background-color: var(--blanco);
-    border-radius: 15px;
+    border-radius: 15px 15px 0px 0px;
     align-items: center;
     flex-direction: column;
     display: flex;
@@ -19,8 +20,7 @@
     text-align: center;
     cursor: pointer;
     margin: 0.5vh;
-    width: 85%;
-    
+    width: 85%; 
 }
 .sidebar__icon{
     transition: 400ms all;
@@ -32,11 +32,16 @@
     padding: 10px;
     
 }
-
+@media screen and (max-width: 1023px){
+    .sidebar--login{
+        bottom: 8vh; 
+    }
+}
 @media screen and (min-width:1024px){
     .sidebar{
-        top:9vh;
+        position: absolute;
         width: 10vw;
+        top:7.5vh;
     }
     .sidebar--login .sidebar__box{
         border-radius: 60% 15px 15px 15px;
