@@ -1,6 +1,6 @@
 <?php
 require_once "tools/connection.php";
-session_start();
+session_start(); //! FALTA ARREGLAR EL PROBLEMA DEL MERGE Y QUEDA BIEN EL LOGIN
 
 //En caso de sesion iniciada te devuelve al index
 if(isset($_SESSION['user']->id)){
